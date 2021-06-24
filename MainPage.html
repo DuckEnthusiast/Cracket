@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <title>Cracket</title>
+    </head>
+    <body>
+        <h1>Riddler Me Diddler</h1>
+        <p>This portion of the scavenger hunt will require you to find three codes to move on to the next puzzle. Finding the codes will be determined by the prompt given, you can only answer one code at a time and the next questions will be given after the pervious code is correct.</p>
+        <div style="padding: 50px;">
+            <div>
+                <p1>Code 1: What is the direct cause of the largest shadow casted upon humanity before it leaves to peroidically ceases.</p1>
+                <p>format: 1 word</p>
+                <input id="code1">
+                <button onclick="submitOne()">Submit</button>
+                <p id="return1">status: </p>
+            </div>
+            <div>
+                <p1 id="code2p">doqwdoqdqohdqdoh</p1>
+                <p id="code2f">format: whewqeuwqi</p>
+                <input id="code2">
+                <button onclick="submitTwo()">Submit</button>
+                <p id="return2">status: eqwiuewuh</p>
+            </div>
+            <div>
+                <p1 id="code3p">Code 1: What is the direct cause of the largest shadow casted upon humanity before it leaves to peroidically ceases.</p1>
+                <p id="code3f">format: 1 word</p>
+                <input id="code3">
+                <button onclick="submitThree()">Submit</button>
+                <p id="return3">status: </p>
+            </div>
+            <button onclick="submitFInal()" id="finalBut">SumbitAll</button>
+        </div> 
+        <script>
+            let state = 1;
+            let update = false; 
+            let newMessage,newFormat = "";
+            let newState = 0;
+            const randomMize = (lengthOfString) =>
+            {
+                let ranString = "";
+                for(let i = 0; i < lengthOfString;i++)
+                {
+                    ranString += String.fromCharCode(Math.floor(Math.random()*122)+33);
+                }
+                return ranString.replace(/(\r\n|\n|\r)/gm, "");
+            }
+
+            setInterval(function(){
+                if(update)
+                {
+                    update = false;
+                    state = newState;
+                    document.getElementById(`code${state}p`).innerHTML = newMessage;
+                    document.getElementById(`code${state}f`).innerHTML = "format: " + newFormat;
+                    document.getElementById(`return${state}`).innerHTML = "status: ";
+                    newMessage,newFormat = "";
+                    newState = 0;
+                }
+                if(state < 2)
+                {
+                    document.getElementById("code2p").innerHTML = randomMize(20); 
+                    document.getElementById("code2f").innerHTML = "format: " + randomMize(20);
+                    document.getElementById("return2").innerHTML = "status: " + randomMize(20); 
+                }
+                if(state < 3)
+                {
+                    document.getElementById("code3p").innerHTML = randomMize(20); 
+                    document.getElementById("code3f").innerHTML = "format: " + randomMize(20);
+                    document.getElementById("return3").innerHTML = "status: " + randomMize(20); 
+                }
+            }, 100);
+
+            const submitOne = () =>
+            {
+                fetch("https://apiscavenger0.herokuapp.com/firstCodeQuck", {
+                    method: "POST",
+                    mode: "cors",
+                    credentials: "same-origin",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "attemptCode": document.getElementById("code1").value,
+                    })
+                }).then(response => JSON.parse(response)).then(data =>{
+                    if(!data.return) return;
+                    newFormat = data.format;
+                    newMessage = data.codeQuestion;
+                    update = true; 
+                })
+            }
+            const submitTwo = () =>
+            {
+
+            }
+            const submitThree = () =>
+            {
+
+            }
+            const submitFInal = ()=>
+            {
+
+            }
+        </script>
+    </body>
+
+</html>
