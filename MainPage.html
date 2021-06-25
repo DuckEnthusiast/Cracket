@@ -56,6 +56,7 @@
                     document.getElementById(`return${parseInt(state)-1}`).innerHTML = "status: complete";
                     
                     document.getElementById(`return${parseInt(state)}`).innerHTML = "status: complete";
+                    if(state == "3") document.getElementById(`return${3}`).innerHTML = "status: ";
                     newMessage,newFormat = "";
                     newState = 0;
                 }
