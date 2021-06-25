@@ -82,7 +82,7 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body:bodyOb
+                    body:JSON.stringify(bodyOb)
                 }).then(response => response.json()).then(data =>{
                     console.log(data);
                     if(!data.return) return;
