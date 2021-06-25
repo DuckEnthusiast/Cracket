@@ -79,10 +79,11 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
+                    body: {
                         "attemptCode": document.getElementById("code1").value,
-                    })
+                    }
                 }).then(response => response).then(data =>{
+                    console.log(data);
                     if(!data.return) return;
                     newFormat = data.format;
                     newMessage = data.codeQuestion;
