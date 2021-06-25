@@ -56,7 +56,7 @@
                     document.getElementById(`return${parseInt(state)-1}`).innerHTML = "status: complete";
                     
                     document.getElementById(`return${parseInt(state)}`).innerHTML = "status: ";
-                    if(state == "4") document.getElementById(`return${3}`).innerHTML = "status: complete";
+                    
                     newMessage,newFormat = "";
                     newState = 0;
                 }
@@ -90,7 +90,6 @@
                     },
                     body:JSON.stringify(bodyOb)
                 }).then(response => response.json()).then(data =>{
-                    console.log(data);
                     if(!data.return) return;
                     newFormat = data.format;
                     newMessage = data.codeQuestion;
@@ -141,6 +140,7 @@
                     console.log(data);
                     if(!data.return) return;
                     document.getElementById("finalBut").style.display = "inline"; 
+                    document.getElementById(`return${3}`).innerHTML = "status: complete";
                 })
             }
             const submitFInal = ()=>
@@ -149,8 +149,7 @@
                 firstCode:document.getElementById("code1").value,
                 secondCode:document.getElementById("code2").value,
                 thirdCode:document.getElementById("code3").value,};
-                console.log(bodyOb)    
-            console.log(document.getElementById("code1").value)
+                
                 fetch(apiUrl, {
                     method: "POST",
                     cache:"no-cache",
@@ -164,7 +163,6 @@
                     },
                     body:JSON.stringify(bodyOb)
                 }).then(response => response.json()).then(data =>{
-                    console.log(data);
                     if(!data.return) return;
                     document.getElementById("nextCode").innerHTML = data.final;
                 })
