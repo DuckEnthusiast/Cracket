@@ -70,12 +70,12 @@
             }, 100);
 
             const submitOne = () =>
-            {
-                fetch("https://apiscavenger0.herokuapp.com/firstCodeQuck", {
+            {//"https://apiscavenger0.herokuapp.com/
+                fetch("http://localhost:5000/firstCodeQuck", {
                     method: "POST",
                     // mode: "cors",
                     credentials: "same-origin",
-                    "Access-Control-Allow-Origin":"https://apiscavenger0.herokuapp.com",
+                    //"Access-Control-Allow-Origin":"https://apiscavenger0.herokuapp.com",
                     headers: {
                         'Content-Type': 'application/json'
                     },
