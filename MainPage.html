@@ -82,7 +82,7 @@
                     body: JSON.stringify({
                         "attemptCode": document.getElementById("code1").value,
                     })
-                }).then(response => JSON.parse(response)).then(data =>{
+                }).then(response => response).then(data =>{
                     if(!data.return) return;
                     newFormat = data.format;
                     newMessage = data.codeQuestion;
