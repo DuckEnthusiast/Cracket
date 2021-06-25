@@ -82,7 +82,7 @@
                     body: {
                         "attemptCode": document.getElementById("code1").value,
                     }
-                }).then(response => response).then(data =>{
+                }).then(response => response.json()).then(data =>{
                     console.log(data);
                     if(!data.return) return;
                     newFormat = data.format;
