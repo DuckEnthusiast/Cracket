@@ -76,8 +76,11 @@
             console.log(document.getElementById("code1").value)
                 fetch("http://localhost:5000/firstCodeQuck", {
                     method: "POST",
-                    mode: "cors",
-                    credentials: "same-origin",
+                    cache:"no-cache",
+                    mode: "same-origin",
+                    credentials:"same-origin",
+                    // mode: "cors",
+                    // credentials: "same-origin",
                     //"Access-Control-Allow-Origin":"https://apiscavenger0.herokuapp.com",
                     headers: {
                         'Content-Type': 'application/json'
