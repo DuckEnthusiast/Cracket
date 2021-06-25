@@ -71,17 +71,18 @@
 
             const submitOne = () =>
             {//"https://apiscavenger0.herokuapp.com/
+                bodyOb = {"attemptCode": document.getElementById("code1").value};
+                console.log(bodyOb)    
+            console.log(document.getElementById("code1").value)
                 fetch("http://localhost:5000/firstCodeQuck", {
                     method: "POST",
-                    // mode: "cors",
+                    mode: "cors",
                     credentials: "same-origin",
                     //"Access-Control-Allow-Origin":"https://apiscavenger0.herokuapp.com",
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: {
-                        "attemptCode": document.getElementById("code1").value,
-                    }
+                    body:bodyOb
                 }).then(response => response.json()).then(data =>{
                     console.log(data);
                     if(!data.return) return;
