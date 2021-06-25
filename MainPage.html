@@ -27,13 +27,14 @@
                 <button onclick="submitThree()">Submit</button>
                 <p id="return3">status: </p>
             </div>
-            <button onclick="submitFInal()" id="finalBut">SumbitAll</button>
+            <button onclick="submitFInal()" id="finalBut" style="display: none;">SumbitAll</button>
         </div> 
         <script>
             let state = 1;
             let update = false; 
             let newMessage,newFormat = "";
             let newState = 0;
+            const apiUrl = "http://localhost:5000/firstCodeQuck"
             const randomMize = (lengthOfString) =>
             {
                 let ranString = "";
@@ -71,10 +72,8 @@
 
             const submitOne = () =>
             {//"https://apiscavenger0.herokuapp.com/
-                bodyOb = {"attemptCode": document.getElementById("code1").value};
-                console.log(bodyOb)    
-            console.log(document.getElementById("code1").value)
-                fetch("http://localhost:5000/firstCodeQuck", {
+                bodyOb = {"attemptCode": document.getElementById("code1").value,code:"1",finalTest="false"};
+                fetch(apiUrl, {
                     method: "POST",
                     cache:"no-cache",
                     mode: "cors",
@@ -97,15 +96,74 @@
             }
             const submitTwo = () =>
             {
-
+                bodyOb = {"attemptCode": document.getElementById("code2").value,code:"2",finalTest="false"};
+                fetch(apiUrl, {
+                    method: "POST",
+                    cache:"no-cache",
+                    mode: "cors",
+                    credentials:"same-origin",
+                    // mode: "cors",
+                    // credentials: "same-origin",
+                    //"Access-Control-Allow-Origin":"https://apiscavenger0.herokuapp.com",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify(bodyOb)
+                }).then(response => response.json()).then(data =>{
+                    console.log(data);
+                    if(!data.return) return;
+                    newFormat = data.format;
+                    newMessage = data.codeQuestion;
+                    newState = data.state.toString();
+                    update = true; 
+                })
             }
             const submitThree = () =>
             {
-
+                bodyOb = {"attemptCode": document.getElementById("code3").value,code:"3",finalTest="false"};
+                fetch(apiUrl, {
+                    method: "POST",
+                    cache:"no-cache",
+                    mode: "cors",
+                    credentials:"same-origin",
+                    // mode: "cors",
+                    // credentials: "same-origin",
+                    //"Access-Control-Allow-Origin":"https://apiscavenger0.herokuapp.com",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify(bodyOb)
+                }).then(response => response.json()).then(data =>{
+                    console.log(data);
+                    if(!data.return) return;
+                    document.getElementById("finalBut").style.display = "inline"; 
+                })
             }
             const submitFInal = ()=>
             {
-
+                bodyOb = {"attemptCode":"",code:"4",finalTest:"true", 
+                firstCode:document.getElementById("code1").value,
+                firstCode:document.getElementById("code2").value,
+                firstCode:document.getElementById("code3").value,};
+                console.log(bodyOb)    
+            console.log(document.getElementById("code1").value)
+                fetch(apiUrl, {
+                    method: "POST",
+                    cache:"no-cache",
+                    mode: "cors",
+                    credentials:"same-origin",
+                    // mode: "cors",
+                    // credentials: "same-origin",
+                    //"Access-Control-Allow-Origin":"https://apiscavenger0.herokuapp.com",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify(bodyOb)
+                }).then(response => response.json()).then(data =>{
+                    console.log(data);
+                    if(!data.return) return;
+                    document.getElementById("nextCode").innerHTML = data.final;
+                })
             }
         </script>
     </body>
