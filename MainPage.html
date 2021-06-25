@@ -54,6 +54,8 @@
                     document.getElementById(`code${state}p`).innerHTML = newMessage;
                     document.getElementById(`code${state}f`).innerHTML = "format: " + newFormat;
                     document.getElementById(`return${parseInt(state)-1}`).innerHTML = "status: complete";
+                    
+                    document.getElementById(`return${parseInt(state)}`).innerHTML = "status: complete";
                     newMessage,newFormat = "";
                     newState = 0;
                 }
