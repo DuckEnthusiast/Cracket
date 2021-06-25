@@ -113,7 +113,7 @@
                     },
                     body:JSON.stringify(bodyOb)
                 }).then(response => response.json()).then(data =>{
-                    console.log(data);
+                    //console.log(data);
                     if(!data.return) return;
                     newFormat = data.format;
                     newMessage = data.codeQuestion;
@@ -137,7 +137,7 @@
                     },
                     body:JSON.stringify(bodyOb)
                 }).then(response => response.json()).then(data =>{
-                    console.log(data);
+                    //console.log(data);
                     if(!data.return) return;
                     document.getElementById("finalBut").style.display = "inline"; 
                     document.getElementById(`return${3}`).innerHTML = "status: complete";
